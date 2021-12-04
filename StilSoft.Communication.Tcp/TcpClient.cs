@@ -427,6 +427,11 @@ namespace StilSoft.Communication.Tcp
 
         private void KeepAlive(bool enable, int keepAliveTime, int keepAliveInterval)
         {
+            if (Environment.OSVersion.Platform != PlatformID.Win32NT)
+            {
+                return;
+            }
+
             if (keepAliveTime <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(keepAliveTime));
